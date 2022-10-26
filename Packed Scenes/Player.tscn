@@ -1,0 +1,121 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/Player/player_spriteframes.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://Packed Scenes/Player.gd" type="Script" id=2]
+[ext_resource path="res://assets/Dust Particle.png" type="Texture" id=3]
+[ext_resource path="res://assets/SFX/jump.sfxr" type="AudioStream" id=4]
+[ext_resource path="res://assets/SFX/walljump.sfxr" type="AudioStream" id=5]
+[ext_resource path="res://assets/SFX/doublejump.sfxr" type="AudioStream" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7.5, 7.5 )
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 7.5
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0, 0.553073, 0.98324, 0.988827, 0.994413, 1 )
+colors = PoolColorArray( 0.996094, 0.996094, 0.996094, 1, 0.822038, 0.822038, 0.822038, 1, 1, 1, 1, 0, 0.741136, 0.741136, 0.741136, 0.712871, 1, 1, 1, 0.549296, 1, 1, 1, 0 )
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0.72067, 0.988827, 1 )
+colors = PoolColorArray( 0, 0.937255, 1, 0.843137, 0, 0.937255, 1, 0, 0, 0.85098, 1, 0 )
+
+[node name="Player" type="KinematicBody2D"]
+collision_mask = 3
+script = ExtResource( 2 )
+speed = 300
+slide_gravity = 100
+jump = 1100
+double_jump = 500
+friction = 0.2
+acceleration = 0.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0.5, 7.5 )
+shape = SubResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+visible = false
+current = true
+zoom = Vector2( 0.6, 0.6 )
+drag_margin_v_enabled = true
+drag_margin_left = 0.3
+drag_margin_top = 0.45
+drag_margin_right = 0.3
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+visible = false
+enabled = true
+cast_to = Vector2( 15, 0 )
+collision_mask = 2
+
+[node name="WallJump_Helper" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="Jump_buffer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0.5, 0 )
+shape = SubResource( 2 )
+
+[node name="Particles" type="Node2D" parent="."]
+
+[node name="RunParticles" type="CPUParticles2D" parent="Particles"]
+position = Vector2( 0, 12 )
+emitting = false
+amount = 50
+lifetime = 0.5
+one_shot = true
+lifetime_randomness = 0.4
+local_coords = false
+texture = ExtResource( 3 )
+emission_shape = 2
+emission_rect_extents = Vector2( 8, 4 )
+gravity = Vector2( 0, -20 )
+angular_velocity = 0.1
+angular_velocity_random = 0.35
+tangential_accel = 0.3
+color_ramp = SubResource( 3 )
+
+[node name="ExplosionParticles" type="CPUParticles2D" parent="Particles"]
+modulate = Color( 0, 6.86657, 8.67, 1 )
+position = Vector2( 0, 19 )
+emitting = false
+amount = 100
+local_coords = false
+emission_shape = 1
+emission_sphere_radius = 11.56
+direction = Vector2( 0, 0 )
+spread = 180.0
+initial_velocity = 64.22
+angular_velocity = 475.6
+angular_velocity_random = 0.17
+scale_amount = 3.0
+color_ramp = SubResource( 4 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = ExtResource( 1 )
+animation = "idle"
+frame = 6
+playing = true
+
+[node name="Jumptween" type="Tween" parent="."]
+
+[node name="sounds" type="Node2D" parent="."]
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource( 4 )
+
+[node name="WalljumpSound" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource( 5 )
+
+[node name="DoublejumpSound" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource( 6 )

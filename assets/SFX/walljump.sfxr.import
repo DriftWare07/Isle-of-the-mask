@@ -1,0 +1,14 @@
+[remap]
+
+importer="com.timothyqiu.gdfxr.importer"
+type="AudioStreamSample"
+path="res://.import/walljump.sfxr-dba744528e1f1e2d64b8c2f31dd972f8.sample"
+
+[deps]
+
+source_file="res://assets/SFX/walljump.sfxr"
+dest_files=[ "res://.import/walljump.sfxr-dba744528e1f1e2d64b8c2f31dd972f8.sample" ]
+
+[params]
+
+loop=false

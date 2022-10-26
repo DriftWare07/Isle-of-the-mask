@@ -1,0 +1,14 @@
+[remap]
+
+importer="com.timothyqiu.gdfxr.importer"
+type="AudioStreamSample"
+path="res://.import/jump.sfxr-32c95d36ba6e2f372c133c3ed1a717c8.sample"
+
+[deps]
+
+source_file="res://assets/SFX/jump.sfxr"
+dest_files=[ "res://.import/jump.sfxr-32c95d36ba6e2f372c133c3ed1a717c8.sample" ]
+
+[params]
+
+loop=false
