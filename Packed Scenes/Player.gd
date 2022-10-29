@@ -36,26 +36,32 @@ func inputs():
 	if Input.is_action_just_pressed("jump"):
 		buffer.start()
 	
-	
+	#jump code
 	if buffer.time_left != 0 and is_on_floor():
 		velocity.y -= jump
 		Input.start_joy_vibration(0, 0.5, 0.2, 0.1)
 		jump_sfx.play()
-		
-	elif (not is_on_floor() and Input.is_action_just_pressed("jump")) and not double_jumped:
+		#double jump code
+	elif (not is_on_floor() and Input.is_action_just_pressed("jump")) and (not double_jumped and not cast.is_colliding()):
 		velocity.y = 0
 		velocity.y -= double_jump+(gravity/10)
+		
 		double_jumped = true
 		
 		Input.start_joy_vibration(0, 0.3, 0.2, 0.1)
-		if cast.is_colliding():
-			walljump = sign(cast.cast_to.x*-1)
-			$WallJump_Helper.start(walljump_strength)
-			double_jumped = false
-			walljump_sfx.play()
-		else:
-			doublejump_sfx.play()
-			doublejumpparticles.emitting = true
+		doublejump_sfx.play()
+		doublejumpparticles.emitting = true
+		#walljump code
+	
+	
+	
+	if cast.is_colliding() and (not is_on_floor() and Input.is_action_just_pressed("jump")):
+		walljump = sign(cast.cast_to.x*-1)
+		$WallJump_Helper.start(walljump_strength)
+		velocity.y = jump*-1
+		walljump_sfx.play()
+		Input.start_joy_vibration(0, 0.3, 0.2, 0.1)
+	
 		
 	if $WallJump_Helper.time_left != 0:
 		dir = walljump
@@ -127,7 +133,7 @@ func _physics_process(delta):
 	
 	if cast.is_colliding() and velocity.y > 0:
 		velocity.y += slide_gravity*delta
-		double_jumped = false
+		
 	else:
 		velocity.y += gravity*delta
 	velocity = move_and_slide(velocity, Vector2.UP)
