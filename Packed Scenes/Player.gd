@@ -24,6 +24,10 @@ onready var doublejump_sfx = $sounds/DoublejumpSound
 var velocity = Vector2()
 var dir = 0
 var walljump = 0
+var hp = 3
+
+
+onready var heartlist = [$UI/Control/LifeBar/Heart1, $UI/Control/LifeBar/Heart2, $UI/Control/LifeBar/Heart3]
 
 func inputs():
 	dir = 0
@@ -100,11 +104,26 @@ func animate():
 	if cast.is_colliding() and not is_on_floor():
 		anim.play("wall_slide")
 	
+	var i = 0
+	
+	heartlist[0].visible = false
+	heartlist[1].visible = false
+	heartlist[2].visible = false
+	
+	while i < hp:
+		
+		heartlist[i].visible = true
+		
+		i += 1
+
+
+
 
 
 func _physics_process(delta):
 	inputs()
 	animate()
+	
 	
 	if cast.is_colliding() and velocity.y > 0:
 		velocity.y += slide_gravity*delta
