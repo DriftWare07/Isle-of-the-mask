@@ -183,19 +183,19 @@ stretch_mode = 1
 [node name="Heart1" type="AnimatedSprite" parent="UI/Control/LifeBar"]
 position = Vector2( 19, 17 )
 frames = SubResource( 13 )
-frame = 3
+frame = 5
 playing = true
 
 [node name="Heart2" type="AnimatedSprite" parent="UI/Control/LifeBar"]
 position = Vector2( 31.5, 17 )
 frames = SubResource( 13 )
-frame = 3
+frame = 5
 playing = true
 
 [node name="Heart3" type="AnimatedSprite" parent="UI/Control/LifeBar"]
 position = Vector2( 44, 17 )
 frames = SubResource( 13 )
-frame = 3
+frame = 5
 playing = true
 
 [node name="Hazard Detection" type="Area2D" parent="."]

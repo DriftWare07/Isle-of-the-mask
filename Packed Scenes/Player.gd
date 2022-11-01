@@ -138,7 +138,7 @@ func _process(_delta):
 	var i = 0
 	while i < hazardList.size():
 		velocity.x = (position.x - hazardList[i].get_parent().position.x)*knockback
-		velocity.y = (position.y - hazardList[i].get_parent().position.y)*knockback
+		velocity.y = -400
 		i += 1
 
 
