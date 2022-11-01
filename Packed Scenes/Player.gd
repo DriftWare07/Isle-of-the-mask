@@ -9,11 +9,13 @@ export var double_jump = 1000
 export var friction = 0.1
 export var acceleration = 0.25
 export var walljump_strength = 0.3
+export var knockback = 30
 var double_jumped = false
 
 onready var anim = $AnimatedSprite
 onready var cast = $RayCast2D
 onready var buffer = $Jump_buffer
+
 onready var runparticles = $Particles/RunParticles
 onready var doublejumpparticles = $Particles/ExplosionParticles
 
@@ -26,6 +28,7 @@ var dir = 0
 var walljump = 0
 var hp = 3
 
+var hazardList = []
 
 onready var heartlist = [$UI/Control/LifeBar/Heart1, $UI/Control/LifeBar/Heart2, $UI/Control/LifeBar/Heart3]
 
@@ -121,13 +124,27 @@ func animate():
 		heartlist[i].visible = true
 		
 		i += 1
+		
+	if $damageCooldown.time_left > 0.7:
+		anim.play("hit")
 
 
-
+func _process(_delta):
+	if $damageCooldown.time_left > 0.1:
+		anim.modulate = "abffffff"
+	else:
+		anim.modulate = "ffffff"
+		
+	var i = 0
+	while i < hazardList.size():
+		velocity.x = (position.x - hazardList[i].get_parent().position.x)*knockback
+		velocity.y = (position.y - hazardList[i].get_parent().position.y)*knockback
+		i += 1
 
 
 func _physics_process(delta):
-	inputs()
+	if $controlLock.time_left < 0.1:
+		inputs()
 	animate()
 	
 	
@@ -139,3 +156,20 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
 	
+
+
+func _on_Hazard_Detection_area_entered(area):
+	
+	if area.is_in_group("Hazard"):
+		if $damageCooldown.time_left < 0.1:
+			hp -= 1
+		$damageCooldown.start()
+		$controlLock.start()
+		hazardList.push_back(area)
+		#velocity.x = (position.x - area.get_parent().position.x)*knockback
+		#velocity.y = (position.y - area.get_parent().position.y)*knockback
+
+
+func _on_Hazard_Detection_area_exited(area):
+	if area.is_in_group("Hazard"):
+		hazardList.erase(area)
