@@ -22,6 +22,7 @@ onready var doublejumpparticles = $Particles/ExplosionParticles
 onready var jump_sfx = $sounds/JumpSound
 onready var walljump_sfx = $sounds/WalljumpSound
 onready var doublejump_sfx = $sounds/DoublejumpSound
+onready var hurt_sfx = $sounds/HurtSound
 
 var velocity = Vector2()
 var dir = 0
@@ -40,7 +41,7 @@ func inputs():
 		buffer.start()
 	
 	#jump code
-	if buffer.time_left != 0 and is_on_floor():
+	if buffer.time_left != 0 and is_on_floor() and hp > 0:
 		velocity.y -= jump
 		Input.start_joy_vibration(0, 0.5, 0.2, 0.1)
 		jump_sfx.play()
@@ -58,7 +59,7 @@ func inputs():
 	
 	
 	
-	if cast.is_colliding() and (not is_on_floor() and Input.is_action_just_pressed("jump")):
+	if cast.is_colliding() and (not is_on_floor() and Input.is_action_just_pressed("jump") and hp > 0):
 		walljump = sign(cast.cast_to.x*-1)
 		$WallJump_Helper.start(walljump_strength)
 		velocity.y = jump*-1
@@ -70,7 +71,7 @@ func inputs():
 		dir = walljump
 		
 		#github test
-	if $WallJump_Helper.time_left == 0:
+	if $WallJump_Helper.time_left == 0 and hp > 0:
 		
 		dir = Input.get_action_strength("walk_right") - Input.get_action_strength("walk_left")
 		
@@ -140,6 +141,11 @@ func _process(_delta):
 		velocity.x = (position.x - hazardList[i].get_parent().position.x)*knockback
 		velocity.y = -400
 		i += 1
+	
+	if hp < 1:
+		$CollisionShape2D.disabled = true
+		anim.stop()
+		
 
 
 func _physics_process(delta):
@@ -163,8 +169,9 @@ func _on_Hazard_Detection_area_entered(area):
 	if area.is_in_group("Hazard"):
 		if $damageCooldown.time_left < 0.1:
 			hp -= 1
-		$damageCooldown.start()
-		$controlLock.start()
+			$damageCooldown.start()
+			$controlLock.start()
+			hurt_sfx.play()
 		hazardList.push_back(area)
 		#velocity.x = (position.x - area.get_parent().position.x)*knockback
 		#velocity.y = (position.y - area.get_parent().position.y)*knockback

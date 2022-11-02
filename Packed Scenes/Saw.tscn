@@ -57,9 +57,11 @@ frame = 7
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Hazard"]]
+visible = false
 shape = SubResource( 104 )
 
 [node name="Area2D" type="Area2D" parent="." groups=["Hazard"]]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 105 )

@@ -14,6 +14,10 @@ config/name="Platformer"
 run/main_scene="res://assets/Player/Setup.tscn"
 config/icon="res://assets/Purple.png"
 
+[autoload]
+
+Mainmusic="*res://Packed Scenes/Mainmusic.tscn"
+
 [display]
 
 window/stretch/mode="2d"

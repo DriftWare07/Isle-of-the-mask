@@ -1,0 +1,14 @@
+[remap]
+
+importer="com.timothyqiu.gdfxr.importer"
+type="AudioStreamSample"
+path="res://.import/hurt.sfxr-cdc5d8471e406b6624f3cf4cb9a47dbc.sample"
+
+[deps]
+
+source_file="res://assets/SFX/hurt.sfxr"
+dest_files=[ "res://.import/hurt.sfxr-cdc5d8471e406b6624f3cf4cb9a47dbc.sample" ]
+
+[params]
+
+loop=false
