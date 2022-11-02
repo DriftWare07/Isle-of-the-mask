@@ -23,6 +23,7 @@ onready var jump_sfx = $sounds/JumpSound
 onready var walljump_sfx = $sounds/WalljumpSound
 onready var doublejump_sfx = $sounds/DoublejumpSound
 onready var hurt_sfx = $sounds/HurtSound
+onready var fade = $UI/Control/FadeControl
 
 var velocity = Vector2()
 var dir = 0
@@ -32,6 +33,10 @@ var hp = 3
 var hazardList = []
 
 onready var heartlist = [$UI/Control/LifeBar/Heart1, $UI/Control/LifeBar/Heart2, $UI/Control/LifeBar/Heart3]
+
+func _ready():
+	fade.play("RESET")
+	fade.play("fadein")
 
 func inputs():
 	dir = 0
@@ -145,6 +150,9 @@ func _process(_delta):
 	if hp < 1:
 		$CollisionShape2D.disabled = true
 		anim.stop()
+		fade.play("fadeout")
+		yield(fade, "animation_finished")
+		get_tree().reload_current_scene()
 		
 
 

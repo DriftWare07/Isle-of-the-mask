@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://assets/Player/player_spriteframes.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Packed Scenes/Player.gd" type="Script" id=2]
@@ -64,6 +64,51 @@ animations = [ {
 "name": "default",
 "speed": 10.0
 } ]
+
+[sub_resource type="Animation" id=15]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Fadeout:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "fadein"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Fadeout:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 4, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "fadeout"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Fadeout:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 4 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="CapsuleShape2D" id=14]
 radius = 12.0
@@ -152,7 +197,7 @@ color_ramp = SubResource( 4 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
 animation = "idle"
-frame = 6
+frame = 2
 playing = true
 
 [node name="sounds" type="Node2D" parent="."]
@@ -170,7 +215,6 @@ stream = ExtResource( 6 )
 stream = ExtResource( 10 )
 
 [node name="UI" type="CanvasLayer" parent="."]
-visible = false
 script = ExtResource( 9 )
 
 [node name="Control" type="Control" parent="UI"]
@@ -187,20 +231,30 @@ stretch_mode = 1
 [node name="Heart1" type="AnimatedSprite" parent="UI/Control/LifeBar"]
 position = Vector2( 19, 17 )
 frames = SubResource( 13 )
-frame = 3
+frame = 4
 playing = true
 
 [node name="Heart2" type="AnimatedSprite" parent="UI/Control/LifeBar"]
 position = Vector2( 31.5, 17 )
 frames = SubResource( 13 )
-frame = 3
+frame = 4
 playing = true
 
 [node name="Heart3" type="AnimatedSprite" parent="UI/Control/LifeBar"]
 position = Vector2( 44, 17 )
 frames = SubResource( 13 )
-frame = 3
+frame = 4
 playing = true
+
+[node name="Fadeout" type="ColorRect" parent="UI/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="FadeControl" type="AnimationPlayer" parent="UI/Control"]
+anims/RESET = SubResource( 15 )
+anims/fadein = SubResource( 16 )
+anims/fadeout = SubResource( 17 )
 
 [node name="Hazard Detection" type="Area2D" parent="."]
 visible = false
