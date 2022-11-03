@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://assets/Player/player_spriteframes.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Packed Scenes/Player.gd" type="Script" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://assets/Big Heart Idle (18x14).png" type="Texture" id=8]
 [ext_resource path="res://Packed Scenes/UIshowonstart.gd" type="Script" id=9]
 [ext_resource path="res://assets/SFX/hurt.sfxr" type="AudioStream" id=10]
+[ext_resource path="res://assets/Transition.tres" type="Shader" id=11]
+[ext_resource path="res://assets/TransitionReverse.tres" type="Shader" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7.5, 7.5 )
@@ -65,6 +67,11 @@ animations = [ {
 "speed": 10.0
 } ]
 
+[sub_resource type="ShaderMaterial" id=18]
+shader = ExtResource( 11 )
+shader_param/progress = 0.0
+shader_param/diamondPixelSize = 10.0
+
 [sub_resource type="Animation" id=15]
 length = 0.001
 tracks/0/type = "value"
@@ -79,35 +86,85 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Fadeout:material:shader_param/progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Fadeout:material:shader")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 11 ) ]
+}
 
 [sub_resource type="Animation" id=16]
 resource_name = "fadein"
+length = 1.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("Fadeout:modulate")
+tracks/0/path = NodePath("Fadeout:material:shader_param/progress")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 4, 1 ),
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 21.1121 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+"values": [ 0.0, 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Fadeout:material:shader")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 12 ) ]
 }
 
 [sub_resource type="Animation" id=17]
 resource_name = "fadeout"
+length = 1.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("Fadeout:modulate")
+tracks/0/path = NodePath("Fadeout:material:shader_param/progress")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 4 ),
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"values": [ 0.0, 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Fadeout:material:shader")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 11 ) ]
 }
 
 [sub_resource type="CapsuleShape2D" id=14]
@@ -197,7 +254,7 @@ color_ramp = SubResource( 4 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
 animation = "idle"
-frame = 8
+frame = 5
 playing = true
 
 [node name="sounds" type="Node2D" parent="."]
@@ -231,22 +288,23 @@ stretch_mode = 1
 [node name="Heart1" type="AnimatedSprite" parent="UI/Control/LifeBar"]
 position = Vector2( 19, 17 )
 frames = SubResource( 13 )
-frame = 3
+frame = 7
 playing = true
 
 [node name="Heart2" type="AnimatedSprite" parent="UI/Control/LifeBar"]
 position = Vector2( 31.5, 17 )
 frames = SubResource( 13 )
-frame = 3
+frame = 7
 playing = true
 
 [node name="Heart3" type="AnimatedSprite" parent="UI/Control/LifeBar"]
 position = Vector2( 44, 17 )
 frames = SubResource( 13 )
-frame = 3
+frame = 7
 playing = true
 
 [node name="Fadeout" type="ColorRect" parent="UI/Control"]
+material = SubResource( 18 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )

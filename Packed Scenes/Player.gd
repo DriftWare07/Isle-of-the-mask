@@ -152,6 +152,7 @@ func _process(_delta):
 		anim.stop()
 		fade.play("fadeout")
 		yield(fade, "animation_finished")
+# warning-ignore:return_value_discarded
 		get_tree().reload_current_scene()
 		
 
