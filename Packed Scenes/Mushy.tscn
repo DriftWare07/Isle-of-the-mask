@@ -1,0 +1,144 @@
+[gd_scene load_steps=29 format=2]
+
+[ext_resource path="res://assets/hazards/Mushy_run.png" type="Texture" id=1]
+[ext_resource path="res://assets/hazards/Mushy_hit.png" type="Texture" id=2]
+[ext_resource path="res://Packed Scenes/Mushy.gd" type="Script" id=3]
+
+[sub_resource type="AtlasTexture" id=106]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=107]
+atlas = ExtResource( 2 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=108]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=109]
+atlas = ExtResource( 2 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=110]
+atlas = ExtResource( 2 )
+region = Rect2( 128, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=111]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=112]
+atlas = ExtResource( 1 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=113]
+atlas = ExtResource( 1 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=114]
+atlas = ExtResource( 1 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=115]
+atlas = ExtResource( 1 )
+region = Rect2( 128, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=116]
+atlas = ExtResource( 1 )
+region = Rect2( 160, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=117]
+atlas = ExtResource( 1 )
+region = Rect2( 192, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=118]
+atlas = ExtResource( 1 )
+region = Rect2( 224, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=119]
+atlas = ExtResource( 1 )
+region = Rect2( 256, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=120]
+atlas = ExtResource( 1 )
+region = Rect2( 288, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=121]
+atlas = ExtResource( 1 )
+region = Rect2( 320, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=122]
+atlas = ExtResource( 1 )
+region = Rect2( 352, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=123]
+atlas = ExtResource( 1 )
+region = Rect2( 384, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=124]
+atlas = ExtResource( 1 )
+region = Rect2( 416, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=125]
+atlas = ExtResource( 1 )
+region = Rect2( 448, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=126]
+atlas = ExtResource( 1 )
+region = Rect2( 480, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=127]
+animations = [ {
+"frames": [ SubResource( 106 ), SubResource( 107 ), SubResource( 108 ), SubResource( 109 ), SubResource( 110 ) ],
+"loop": false,
+"name": "hit",
+"speed": 15.0
+}, {
+"frames": [ SubResource( 111 ), SubResource( 112 ), SubResource( 113 ), SubResource( 114 ), SubResource( 115 ), SubResource( 116 ), SubResource( 117 ), SubResource( 118 ), SubResource( 119 ), SubResource( 120 ), SubResource( 121 ), SubResource( 122 ), SubResource( 123 ), SubResource( 124 ), SubResource( 125 ), SubResource( 126 ) ],
+"loop": true,
+"name": "walk",
+"speed": 15.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=128]
+extents = Vector2( 14, 10 )
+
+[sub_resource type="RectangleShape2D" id=129]
+extents = Vector2( 13, 9.5 )
+
+[sub_resource type="CapsuleShape2D" id=130]
+radius = 4.0
+height = 17.5
+
+[node name="Mushy" type="KinematicBody2D"]
+collision_mask = 4
+script = ExtResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 127 )
+animation = "walk"
+frame = 7
+playing = true
+flip_h = true
+
+[node name="Phy_box" type="CollisionShape2D" parent="." groups=["Hazard"]]
+position = Vector2( 0, 6 )
+shape = SubResource( 128 )
+
+[node name="hurtbox" type="Area2D" parent="." groups=["Hazard"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+position = Vector2( 0, 6.5 )
+shape = SubResource( 129 )
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2( 0, -3 )
+rotation = 1.5708
+shape = SubResource( 130 )
+one_way_collision_margin = 0.0
+
+[connection signal="area_exited" from="hurtbox" to="." method="_on_hurtbox_area_exited"]
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Idle (32x32).png-174ddafbc770fdb9bde8dc7fbd74dd75.stex"
+path="res://.import/Mushy_run.png-0ad51347497b484687a50cb2b9ee807b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/hazards/Idle (32x32).png"
-dest_files=[ "res://.import/Idle (32x32).png-174ddafbc770fdb9bde8dc7fbd74dd75.stex" ]
+source_file="res://assets/hazards/Mushy_run.png"
+dest_files=[ "res://.import/Mushy_run.png-0ad51347497b484687a50cb2b9ee807b.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
