@@ -1,8 +1,9 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://assets/hazards/Mushy_run.png" type="Texture" id=1]
 [ext_resource path="res://assets/hazards/Mushy_hit.png" type="Texture" id=2]
 [ext_resource path="res://Packed Scenes/Mushy.gd" type="Script" id=3]
+[ext_resource path="res://assets/SFX/enemy_hurt.sfxr" type="AudioStream" id=4]
 
 [sub_resource type="AtlasTexture" id=106]
 atlas = ExtResource( 2 )
@@ -118,7 +119,7 @@ script = ExtResource( 3 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 127 )
 animation = "walk"
-frame = 9
+frame = 1
 playing = true
 flip_h = true
 
@@ -143,8 +144,11 @@ one_way_collision_margin = 0.0
 [node name="Wallcheck" type="RayCast2D" parent="."]
 position = Vector2( 0, 6 )
 enabled = true
-cast_to = Vector2( 25, 0 )
-collision_mask = 3
+cast_to = Vector2( 22, 0 )
+collision_mask = 2
+
+[node name="hurtsfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
 
 [connection signal="area_exited" from="hurtbox" to="." method="_on_hurtbox_area_exited"]
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]

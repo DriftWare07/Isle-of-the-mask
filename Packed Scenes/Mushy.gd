@@ -24,7 +24,7 @@ func _physics_process(delta):
 		$AnimatedSprite.flip_h = false
 	
 	
-	#pew pew
+	
 	
 	
 	velocity.y += 4000*delta
@@ -46,6 +46,8 @@ func _on_hitbox_area_entered(area):
 	if area.is_in_group("Player") and area.get_parent().position.y < position.y:
 		$hurtbox.monitorable = false
 		area.get_parent().velocity.y -= area.get_parent().jump
+		velocity.x = 0
+		$hurtsfx.play()
 		$AnimatedSprite.play("hit")
 		yield($AnimatedSprite, "animation_finished")
 		queue_free()
