@@ -24,7 +24,7 @@ func _physics_process(delta):
 		$AnimatedSprite.flip_h = false
 	
 	
-	
+	#pew pew
 	
 	
 	velocity.y += 4000*delta
