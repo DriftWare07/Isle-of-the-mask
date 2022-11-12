@@ -180,6 +180,7 @@ friction = 0.2
 acceleration = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Player"]]
+visible = false
 position = Vector2( 0.5, 7.5 )
 shape = SubResource( 1 )
 
@@ -250,7 +251,7 @@ color_ramp = SubResource( 4 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." groups=["Player"]]
 frames = ExtResource( 1 )
 animation = "idle"
-frame = 7
+frame = 1
 playing = true
 
 [node name="sounds" type="Node2D" parent="." groups=["Player"]]
@@ -285,19 +286,16 @@ stretch_mode = 1
 [node name="Heart1" type="AnimatedSprite" parent="UI/Control/LifeBar" groups=["Player"]]
 position = Vector2( 19, 17 )
 frames = SubResource( 13 )
-frame = 5
 playing = true
 
 [node name="Heart2" type="AnimatedSprite" parent="UI/Control/LifeBar" groups=["Player"]]
 position = Vector2( 31.5, 17 )
 frames = SubResource( 13 )
-frame = 5
 playing = true
 
 [node name="Heart3" type="AnimatedSprite" parent="UI/Control/LifeBar" groups=["Player"]]
 position = Vector2( 44, 17 )
 frames = SubResource( 13 )
-frame = 5
 playing = true
 
 [node name="Fadeout" type="ColorRect" parent="UI/Control" groups=["Player"]]
@@ -312,6 +310,7 @@ anims/fadein = SubResource( 16 )
 anims/fadeout = SubResource( 17 )
 
 [node name="Hazard Detection" type="Area2D" parent="." groups=["Player"]]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hazard Detection" groups=["Player"]]
 position = Vector2( 0.5, 5.5 )

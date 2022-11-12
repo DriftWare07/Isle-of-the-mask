@@ -119,29 +119,35 @@ script = ExtResource( 3 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 127 )
 animation = "walk"
-frame = 1
+frame = 2
 playing = true
 flip_h = true
 
 [node name="Phy_box" type="CollisionShape2D" parent="." groups=["Hazard"]]
+visible = false
 position = Vector2( 0, 6 )
 shape = SubResource( 128 )
 
 [node name="hurtbox" type="Area2D" parent="." groups=["Hazard"]]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+visible = false
 position = Vector2( 0, 6.5 )
 shape = SubResource( 129 )
 
 [node name="hitbox" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+visible = false
 position = Vector2( 0, -3 )
 rotation = 1.5708
 shape = SubResource( 130 )
 one_way_collision_margin = 0.0
 
 [node name="Wallcheck" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 0, 6 )
 enabled = true
 cast_to = Vector2( 22, 0 )
@@ -150,5 +156,4 @@ collision_mask = 2
 [node name="hurtsfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 
-[connection signal="area_exited" from="hurtbox" to="." method="_on_hurtbox_area_exited"]
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]

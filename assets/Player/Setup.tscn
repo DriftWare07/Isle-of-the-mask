@@ -49,3 +49,6 @@ position = Vector2( -55, -178 )
 
 [node name="Mushy" parent="." instance=ExtResource( 4 )]
 position = Vector2( 332, -182 )
+
+[node name="Mushy2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 461, -182 )

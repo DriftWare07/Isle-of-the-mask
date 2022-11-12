@@ -17,7 +17,6 @@ func _physics_process(delta):
 	velocity.x = sign(wallcheck.cast_to.x)*speed
 	if wallcheck.is_colliding():
 		wallcheck.cast_to.x = wallcheck.cast_to.x*-1
-		print(wallcheck.cast_to.x)
 	if wallcheck.cast_to.x > 0:
 		$AnimatedSprite.flip_h = true
 	else:
@@ -36,15 +35,9 @@ func _physics_process(delta):
 
 
 
-func _on_hurtbox_area_exited(area):
-	if area.is_in_group("Player"):
-		#$hitbox/CollisionShape2D.disabled = true
-		$hitbox.monitorable = false
-		
-
 func _on_hitbox_area_entered(area):
 	if area.is_in_group("Player") and area.get_parent().position.y < position.y:
-		$hurtbox.monitorable = false
+		#$hurtbox.monitorable = false
 		area.get_parent().velocity.y -= area.get_parent().jump
 		velocity.x = 0
 		$hurtsfx.play()

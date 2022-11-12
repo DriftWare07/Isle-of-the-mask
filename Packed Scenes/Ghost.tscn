@@ -1,0 +1,103 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://assets/hazards/idleghost.png" type="Texture" id=1]
+[ext_resource path="res://Packed Scenes/Mushy.gd" type="Script" id=3]
+[ext_resource path="res://assets/SFX/enemy_hurt.sfxr" type="AudioStream" id=4]
+
+[sub_resource type="AtlasTexture" id=131]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 44, 30 )
+
+[sub_resource type="AtlasTexture" id=132]
+atlas = ExtResource( 1 )
+region = Rect2( 44, 0, 44, 30 )
+
+[sub_resource type="AtlasTexture" id=133]
+atlas = ExtResource( 1 )
+region = Rect2( 88, 0, 44, 30 )
+
+[sub_resource type="AtlasTexture" id=134]
+atlas = ExtResource( 1 )
+region = Rect2( 132, 0, 44, 30 )
+
+[sub_resource type="AtlasTexture" id=135]
+atlas = ExtResource( 1 )
+region = Rect2( 176, 0, 44, 30 )
+
+[sub_resource type="AtlasTexture" id=136]
+atlas = ExtResource( 1 )
+region = Rect2( 220, 0, 44, 30 )
+
+[sub_resource type="AtlasTexture" id=137]
+atlas = ExtResource( 1 )
+region = Rect2( 264, 0, 44, 30 )
+
+[sub_resource type="AtlasTexture" id=138]
+atlas = ExtResource( 1 )
+region = Rect2( 308, 0, 44, 30 )
+
+[sub_resource type="AtlasTexture" id=139]
+atlas = ExtResource( 1 )
+region = Rect2( 352, 0, 44, 30 )
+
+[sub_resource type="AtlasTexture" id=140]
+atlas = ExtResource( 1 )
+region = Rect2( 396, 0, 44, 30 )
+
+[sub_resource type="SpriteFrames" id=141]
+animations = [ {
+"frames": [ SubResource( 131 ), SubResource( 132 ), SubResource( 133 ), SubResource( 134 ), SubResource( 135 ), SubResource( 136 ), SubResource( 137 ), SubResource( 138 ), SubResource( 139 ), SubResource( 140 ) ],
+"loop": true,
+"name": "idle",
+"speed": 15.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=128]
+extents = Vector2( 14, 12 )
+
+[sub_resource type="RectangleShape2D" id=129]
+extents = Vector2( 13, 11.5 )
+
+[sub_resource type="CapsuleShape2D" id=130]
+radius = 4.0
+height = 17.5
+
+[node name="Mushy" type="KinematicBody2D"]
+collision_mask = 4
+script = ExtResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 141 )
+animation = "idle"
+frame = 1
+playing = true
+flip_h = true
+
+[node name="Phy_box" type="CollisionShape2D" parent="." groups=["Hazard"]]
+position = Vector2( 0, 4 )
+shape = SubResource( 128 )
+
+[node name="hurtbox" type="Area2D" parent="." groups=["Hazard"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+position = Vector2( 0, 4.5 )
+shape = SubResource( 129 )
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2( 0, -8 )
+rotation = 1.5708
+shape = SubResource( 130 )
+one_way_collision_margin = 0.0
+
+[node name="Wallcheck" type="RayCast2D" parent="."]
+position = Vector2( 0, 6 )
+enabled = true
+cast_to = Vector2( 22, 0 )
+collision_mask = 2
+
+[node name="hurtsfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
