@@ -1,8 +1,35 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://assets/hazards/idleghost.png" type="Texture" id=1]
-[ext_resource path="res://Packed Scenes/Mushy.gd" type="Script" id=3]
+[ext_resource path="res://Packed Scenes/Ghost.gd" type="Script" id=2]
+[ext_resource path="res://assets/hazards/Hit ghost(44x30).png" type="Texture" id=3]
 [ext_resource path="res://assets/SFX/enemy_hurt.sfxr" type="AudioStream" id=4]
+[ext_resource path="res://assets/hazards/ghost_shader.tres" type="Shader" id=5]
+
+[sub_resource type="ShaderMaterial" id=150]
+shader = ExtResource( 5 )
+shader_param/dist = 16.0
+shader_param/alpha = 0.0
+
+[sub_resource type="AtlasTexture" id=142]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 44, 31 )
+
+[sub_resource type="AtlasTexture" id=143]
+atlas = ExtResource( 3 )
+region = Rect2( 44, 0, 44, 31 )
+
+[sub_resource type="AtlasTexture" id=144]
+atlas = ExtResource( 3 )
+region = Rect2( 88, 0, 44, 31 )
+
+[sub_resource type="AtlasTexture" id=145]
+atlas = ExtResource( 3 )
+region = Rect2( 132, 0, 44, 31 )
+
+[sub_resource type="AtlasTexture" id=146]
+atlas = ExtResource( 3 )
+region = Rect2( 176, 0, 44, 31 )
 
 [sub_resource type="AtlasTexture" id=131]
 atlas = ExtResource( 1 )
@@ -46,6 +73,11 @@ region = Rect2( 396, 0, 44, 30 )
 
 [sub_resource type="SpriteFrames" id=141]
 animations = [ {
+"frames": [ SubResource( 142 ), SubResource( 143 ), SubResource( 144 ), SubResource( 145 ), SubResource( 146 ) ],
+"loop": false,
+"name": "hit",
+"speed": 15.0
+}, {
 "frames": [ SubResource( 131 ), SubResource( 132 ), SubResource( 133 ), SubResource( 134 ), SubResource( 135 ), SubResource( 136 ), SubResource( 137 ), SubResource( 138 ), SubResource( 139 ), SubResource( 140 ) ],
 "loop": true,
 "name": "idle",
@@ -62,14 +94,96 @@ extents = Vector2( 13, 11.5 )
 radius = 4.0
 height = 17.5
 
-[node name="Mushy" type="KinematicBody2D"]
+[sub_resource type="Animation" id=147]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Phy_box:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("hitbox:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AnimatedSprite:material:shader_param/alpha")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=148]
+resource_name = "disappear"
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:material:shader_param/alpha")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=149]
+resource_name = "reappear"
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:material:shader_param/alpha")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+
+[node name="Ghost" type="KinematicBody2D"]
 collision_mask = 4
-script = ExtResource( 3 )
+script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+material = SubResource( 150 )
 frames = SubResource( 141 )
 animation = "idle"
-frame = 1
+frame = 3
 playing = true
 flip_h = true
 
@@ -99,5 +213,14 @@ collision_mask = 2
 
 [node name="hurtsfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 147 )
+anims/disappear = SubResource( 148 )
+anims/reappear = SubResource( 149 )
+
+[node name="disappearence_timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
 
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
