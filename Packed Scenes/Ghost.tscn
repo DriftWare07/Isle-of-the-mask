@@ -109,7 +109,7 @@ script = ExtResource( 2 )
 material = SubResource( 150 )
 frames = ExtResource( 1 )
 animation = "idle"
-frame = 2
+frame = 3
 playing = true
 flip_h = true
 

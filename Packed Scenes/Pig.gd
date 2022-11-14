@@ -46,9 +46,12 @@ func _on_hitbox_area_entered(area):
 		speed = 0
 		yield($AnimatedSprite, "animation_finished")
 		
+		
 		if hp > 1:
 			$AnimatedSprite.play("run")
 			speed = 200
 			hp =- 1
 		else:
+			
+			
 			queue_free()
