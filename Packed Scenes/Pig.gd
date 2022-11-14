@@ -5,10 +5,10 @@ var velocity = Vector2.ZERO
 export var speed = 100
 var inhurt = false
 onready var wallcheck = $Wallcheck
-var vis = true
+var hp = 2
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	$AnimatedSprite.play("walk")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -24,15 +24,6 @@ func _physics_process(delta):
 		$AnimatedSprite.flip_h = false
 	
 	
-	if $disappearence_timer.time_left < 1:
-		if vis:
-			$AnimationPlayer.play("disappear")
-			vis = false
-			$disappearence_timer.start()
-		elif not vis:
-			$AnimationPlayer.play("reappear")
-			vis = true
-			$disappearence_timer.start()
 	
 	
 	
@@ -51,9 +42,13 @@ func _on_hitbox_area_entered(area):
 		area.get_parent().velocity.y -= area.get_parent().jump
 		velocity.x = 0
 		$hurtsfx.play()
-		#$disappearence_timer.stop()
 		$AnimatedSprite.play("hit")
-		
+		speed = 0
 		yield($AnimatedSprite, "animation_finished")
-		queue_free()
 		
+		if hp > 1:
+			$AnimatedSprite.play("run")
+			speed = 200
+			hp =- 1
+		else:
+			queue_free()
