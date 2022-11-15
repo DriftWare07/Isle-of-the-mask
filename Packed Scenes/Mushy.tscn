@@ -21,7 +21,7 @@ script = ExtResource( 3 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
 animation = "walk"
-frame = 14
+frame = 13
 playing = true
 flip_h = true
 
@@ -34,7 +34,6 @@ shape = SubResource( 128 )
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
-visible = false
 position = Vector2( 0, 6.5 )
 shape = SubResource( 129 )
 
@@ -42,7 +41,6 @@ shape = SubResource( 129 )
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
-visible = false
 position = Vector2( 0, -3 )
 rotation = 1.5708
 shape = SubResource( 130 )

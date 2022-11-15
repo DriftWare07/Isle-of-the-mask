@@ -127,17 +127,26 @@ height = 14.0
 script = ExtResource( 4 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 1, 0 )
 frames = SubResource( 12 )
 animation = "idle"
-frame = 5
+frame = 8
 playing = true
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -4, 4 )
+position = Vector2( 0, 4 )
 shape = SubResource( 26 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 0, -4 )
 
 [connection signal="area_entered" from="." to="." method="_on_Plant_Shooter_area_entered"]
