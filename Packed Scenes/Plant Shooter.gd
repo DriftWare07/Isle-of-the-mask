@@ -12,7 +12,7 @@ export var flipped = false
 func _ready():
 	$AnimatedSprite.flip_h = flipped
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if $ShootTimer.time_left < 1:
 		bullet = b.instance()
 		$AnimatedSprite.play("attack")
@@ -24,7 +24,7 @@ func _physics_process(delta):
 			bullet.velocity.x = -200
 		$ShootTimer.start()
 		yield($AnimatedSprite, "animation_finished")
-		var bs = get_parent().add_child(bullet)
+		get_parent().add_child(bullet)
 		
 		
 		$AnimatedSprite.play("idle")

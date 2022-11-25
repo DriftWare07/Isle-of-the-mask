@@ -28,3 +28,4 @@ func _on_Bouncer_area_entered(area):
 
 func _on_AnimatedSprite_animation_finished():
 	$AnimatedSprite.play("idle")
+	

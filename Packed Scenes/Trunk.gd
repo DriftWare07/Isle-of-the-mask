@@ -36,7 +36,7 @@ func _physics_process(delta):
 			bullet.velocity.x = -200
 		$ShootTimer.start()
 		
-		var bs = get_parent().add_child(bullet)
+		get_parent().add_child(bullet)
 		
 		
 		$AnimatedSprite.play("walk")

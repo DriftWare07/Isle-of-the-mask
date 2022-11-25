@@ -11,10 +11,10 @@ func _ready():
 	pass
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	velocity = move_and_slide(velocity)
 
 
 
-func _on_Area2D_body_entered(body):
+func _on_Area2D_body_entered(_body):
 	queue_free()

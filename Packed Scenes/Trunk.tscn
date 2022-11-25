@@ -47,6 +47,7 @@ shape = SubResource( 130 )
 one_way_collision_margin = 0.0
 
 [node name="Wallcheck" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 0, 6 )
 enabled = true
 cast_to = Vector2( 22, 0 )
@@ -56,6 +57,7 @@ collision_mask = 2
 stream = ExtResource( 4 )
 
 [node name="Edgecheck" type="RayCast2D" parent="."]
+visible = false
 enabled = true
 cast_to = Vector2( 22, 25 )
 collision_mask = 3
@@ -64,6 +66,7 @@ collision_mask = 3
 wait_time = 4.0
 
 [node name="Position2D" type="Position2D" parent="."]
+visible = false
 position = Vector2( 0, 4 )
 
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
