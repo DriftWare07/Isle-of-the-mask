@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://assets/Player/player_spriteframes.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Packed Scenes/Player.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://assets/SFX/hurt.sfxr" type="AudioStream" id=10]
 [ext_resource path="res://assets/Transition.tres" type="Shader" id=11]
 [ext_resource path="res://assets/TransitionReverse.tres" type="Shader" id=12]
+[ext_resource path="res://assets/chromic.tres" type="Shader" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7.5, 7.5 )
@@ -167,6 +168,11 @@ tracks/1/keys = {
 "values": [ ExtResource( 11 ) ]
 }
 
+[sub_resource type="ShaderMaterial" id=20]
+shader = ExtResource( 13 )
+shader_param/levels = 3
+shader_param/spread = 0.0
+
 [sub_resource type="RectangleShape2D" id=19]
 extents = Vector2( 9.5, 10.5 )
 
@@ -176,8 +182,8 @@ speed = 300
 slide_gravity = 100
 jump = 1100
 double_jump = 500
-friction = 0.2
-acceleration = 0.5
+friction = 0.3
+acceleration = 0.2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Player"]]
 visible = false
@@ -251,7 +257,7 @@ color_ramp = SubResource( 4 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." groups=["Player"]]
 frames = ExtResource( 1 )
 animation = "idle"
-frame = 6
+frame = 8
 playing = true
 
 [node name="sounds" type="Node2D" parent="." groups=["Player"]]
@@ -286,19 +292,19 @@ stretch_mode = 1
 [node name="Heart1" type="AnimatedSprite" parent="UI/Control/LifeBar" groups=["Player"]]
 position = Vector2( 19, 17 )
 frames = SubResource( 13 )
-frame = 5
+frame = 3
 playing = true
 
 [node name="Heart2" type="AnimatedSprite" parent="UI/Control/LifeBar" groups=["Player"]]
 position = Vector2( 31.5, 17 )
 frames = SubResource( 13 )
-frame = 5
+frame = 3
 playing = true
 
 [node name="Heart3" type="AnimatedSprite" parent="UI/Control/LifeBar" groups=["Player"]]
 position = Vector2( 44, 17 )
 frames = SubResource( 13 )
-frame = 5
+frame = 3
 playing = true
 
 [node name="Fadeout" type="ColorRect" parent="UI/Control" groups=["Player"]]
@@ -311,6 +317,11 @@ color = Color( 0, 0, 0, 1 )
 anims/RESET = SubResource( 15 )
 anims/fadein = SubResource( 16 )
 anims/fadeout = SubResource( 17 )
+
+[node name="Chromic" type="ColorRect" parent="UI/Control"]
+material = SubResource( 20 )
+anchor_right = 1.0
+anchor_bottom = 1.0
 
 [node name="Hazard Detection" type="Area2D" parent="." groups=["Player"]]
 visible = false
