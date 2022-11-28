@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/components/AutoTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/tile154.png" type="Texture" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://Packed Scenes/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Packed Scenes/Plant Shooter.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Packed Scenes/Bouncer.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Packed Scenes/Spike.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Packed Scenes/Mushy.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Packed Scenes/Saw.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Packed Scenes/Pig.tscn" type="PackedScene" id=11]
@@ -75,9 +74,6 @@ position = Vector2( 566, -178 )
 
 [node name="Bouncer" parent="." instance=ExtResource( 7 )]
 position = Vector2( 200, 33 )
-
-[node name="Spike" parent="." instance=ExtResource( 8 )]
-position = Vector2( 271, -199 )
 
 [node name="Turnip" parent="." instance=ExtResource( 12 )]
 position = Vector2( 93, -283 )

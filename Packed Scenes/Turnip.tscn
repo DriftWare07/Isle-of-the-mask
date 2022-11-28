@@ -21,7 +21,6 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
 animation = "flying_idle"
-frame = 5
 playing = true
 flip_h = true
 

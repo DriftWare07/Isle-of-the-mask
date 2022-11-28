@@ -172,7 +172,7 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
 	Engine.time_scale = 1.1-Input.get_action_strength("the_world")
-	$UI/Control/Chromic.material.set_shader_param("spread", Input.get_action_strength("the_world")/50)
+	
 	
 
 

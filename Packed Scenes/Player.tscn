@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://assets/Player/player_spriteframes.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Packed Scenes/Player.gd" type="Script" id=2]
@@ -12,7 +12,6 @@
 [ext_resource path="res://assets/SFX/hurt.sfxr" type="AudioStream" id=10]
 [ext_resource path="res://assets/Transition.tres" type="Shader" id=11]
 [ext_resource path="res://assets/TransitionReverse.tres" type="Shader" id=12]
-[ext_resource path="res://assets/chromic.tres" type="Shader" id=13]
 [ext_resource path="res://assets/shockwave.tres" type="Shader" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -197,11 +196,6 @@ tracks/1/keys = {
 "values": [ ExtResource( 11 ) ]
 }
 
-[sub_resource type="ShaderMaterial" id=20]
-shader = ExtResource( 13 )
-shader_param/levels = 3
-shader_param/spread = 0.0
-
 [sub_resource type="ShaderMaterial" id=22]
 shader = ExtResource( 14 )
 shader_param/strength = 0.08
@@ -294,7 +288,7 @@ color_ramp = SubResource( 4 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." groups=["Player"]]
 frames = ExtResource( 1 )
 animation = "idle"
-frame = 9
+frame = 1
 playing = true
 
 [node name="sounds" type="Node2D" parent="." groups=["Player"]]
@@ -312,7 +306,6 @@ stream = ExtResource( 6 )
 stream = ExtResource( 10 )
 
 [node name="UI" type="CanvasLayer" parent="." groups=["Player"]]
-visible = false
 script = ExtResource( 9 )
 
 [node name="Control" type="Control" parent="UI" groups=["Player"]]
@@ -329,19 +322,19 @@ stretch_mode = 1
 [node name="Heart1" type="AnimatedSprite" parent="UI/Control/LifeBar" groups=["Player"]]
 position = Vector2( 19, 17 )
 frames = SubResource( 13 )
-frame = 1
+frame = 7
 playing = true
 
 [node name="Heart2" type="AnimatedSprite" parent="UI/Control/LifeBar" groups=["Player"]]
 position = Vector2( 31.5, 17 )
 frames = SubResource( 13 )
-frame = 1
+frame = 7
 playing = true
 
 [node name="Heart3" type="AnimatedSprite" parent="UI/Control/LifeBar" groups=["Player"]]
 position = Vector2( 44, 17 )
 frames = SubResource( 13 )
-frame = 1
+frame = 7
 playing = true
 
 [node name="Fadeout" type="ColorRect" parent="UI/Control" groups=["Player"]]
@@ -355,11 +348,6 @@ anims/RESET = SubResource( 15 )
 anims/Shockwave = SubResource( 21 )
 anims/fadein = SubResource( 16 )
 anims/fadeout = SubResource( 17 )
-
-[node name="Chromic" type="ColorRect" parent="UI/Control"]
-material = SubResource( 20 )
-anchor_right = 1.0
-anchor_bottom = 1.0
 
 [node name="Shockwave" type="ColorRect" parent="UI/Control"]
 material = SubResource( 22 )
