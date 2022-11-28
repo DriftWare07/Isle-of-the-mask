@@ -54,7 +54,8 @@ func inputs():
 	elif (not is_on_floor() and Input.is_action_just_pressed("jump")) and (not double_jumped and not cast.is_colliding()):
 		velocity.y = 0
 		velocity.y -= double_jump+(gravity/10)
-		
+		#$UI/Control/Shockwave.material.set_shader_param("center", )
+		fade.play("Shockwave")
 		double_jumped = true
 		
 		Input.start_joy_vibration(0, 0.3, 0.2, 0.1)

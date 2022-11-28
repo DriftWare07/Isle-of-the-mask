@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://assets/Player/player_spriteframes.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Packed Scenes/Player.gd" type="Script" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://assets/Transition.tres" type="Shader" id=11]
 [ext_resource path="res://assets/TransitionReverse.tres" type="Shader" id=12]
 [ext_resource path="res://assets/chromic.tres" type="Shader" id=13]
+[ext_resource path="res://assets/shockwave.tres" type="Shader" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7.5, 7.5 )
@@ -111,6 +112,33 @@ tracks/2/keys = {
 "update": 0,
 "values": [ ExtResource( 11 ) ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Shockwave:material:shader_param/radius")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=21]
+resource_name = "Shockwave"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Shockwave:material:shader_param/radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
 
 [sub_resource type="Animation" id=16]
 resource_name = "fadein"
@@ -173,6 +201,15 @@ shader = ExtResource( 13 )
 shader_param/levels = 3
 shader_param/spread = 0.0
 
+[sub_resource type="ShaderMaterial" id=22]
+shader = ExtResource( 14 )
+shader_param/strength = 0.08
+shader_param/center = Vector2( 0.5, 0.5 )
+shader_param/radius = 0.0
+shader_param/aberration = 0.425
+shader_param/width = 0.04
+shader_param/feather = 0.135
+
 [sub_resource type="RectangleShape2D" id=19]
 extents = Vector2( 9.5, 10.5 )
 
@@ -192,7 +229,6 @@ shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["Player"]]
 current = true
-drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 drag_margin_left = 0.3
 drag_margin_top = 0.45
@@ -257,7 +293,7 @@ color_ramp = SubResource( 4 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." groups=["Player"]]
 frames = ExtResource( 1 )
 animation = "idle"
-frame = 8
+frame = 10
 playing = true
 
 [node name="sounds" type="Node2D" parent="." groups=["Player"]]
@@ -275,7 +311,6 @@ stream = ExtResource( 6 )
 stream = ExtResource( 10 )
 
 [node name="UI" type="CanvasLayer" parent="." groups=["Player"]]
-visible = false
 script = ExtResource( 9 )
 
 [node name="Control" type="Control" parent="UI" groups=["Player"]]
@@ -292,19 +327,19 @@ stretch_mode = 1
 [node name="Heart1" type="AnimatedSprite" parent="UI/Control/LifeBar" groups=["Player"]]
 position = Vector2( 19, 17 )
 frames = SubResource( 13 )
-frame = 3
+frame = 5
 playing = true
 
 [node name="Heart2" type="AnimatedSprite" parent="UI/Control/LifeBar" groups=["Player"]]
 position = Vector2( 31.5, 17 )
 frames = SubResource( 13 )
-frame = 3
+frame = 5
 playing = true
 
 [node name="Heart3" type="AnimatedSprite" parent="UI/Control/LifeBar" groups=["Player"]]
 position = Vector2( 44, 17 )
 frames = SubResource( 13 )
-frame = 3
+frame = 5
 playing = true
 
 [node name="Fadeout" type="ColorRect" parent="UI/Control" groups=["Player"]]
@@ -315,11 +350,17 @@ color = Color( 0, 0, 0, 1 )
 
 [node name="FadeControl" type="AnimationPlayer" parent="UI/Control" groups=["Player"]]
 anims/RESET = SubResource( 15 )
+anims/Shockwave = SubResource( 21 )
 anims/fadein = SubResource( 16 )
 anims/fadeout = SubResource( 17 )
 
 [node name="Chromic" type="ColorRect" parent="UI/Control"]
 material = SubResource( 20 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Shockwave" type="ColorRect" parent="UI/Control"]
+material = SubResource( 22 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
