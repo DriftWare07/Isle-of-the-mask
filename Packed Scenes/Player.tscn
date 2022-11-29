@@ -224,6 +224,7 @@ shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["Player"]]
 current = true
+drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 drag_margin_left = 0.3
 drag_margin_top = 0.45
@@ -288,7 +289,7 @@ color_ramp = SubResource( 4 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." groups=["Player"]]
 frames = ExtResource( 1 )
 animation = "idle"
-frame = 9
+frame = 2
 playing = true
 
 [node name="sounds" type="Node2D" parent="." groups=["Player"]]
@@ -322,16 +323,19 @@ stretch_mode = 1
 [node name="Heart1" type="AnimatedSprite" parent="UI/Control/LifeBar" groups=["Player"]]
 position = Vector2( 19, 17 )
 frames = SubResource( 13 )
+frame = 5
 playing = true
 
 [node name="Heart2" type="AnimatedSprite" parent="UI/Control/LifeBar" groups=["Player"]]
 position = Vector2( 31.5, 17 )
 frames = SubResource( 13 )
+frame = 5
 playing = true
 
 [node name="Heart3" type="AnimatedSprite" parent="UI/Control/LifeBar" groups=["Player"]]
 position = Vector2( 44, 17 )
 frames = SubResource( 13 )
+frame = 5
 playing = true
 
 [node name="Fadeout" type="ColorRect" parent="UI/Control" groups=["Player"]]
