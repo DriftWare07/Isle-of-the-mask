@@ -16,7 +16,7 @@ config/icon="res://assets/Purple.png"
 
 [autoload]
 
-Mainmusic="*res://Packed Scenes/Mainmusic.tscn"
+Mainmusic="*res://Packed Scenes/hazards/Mainmusic.tscn"
 
 [display]
 

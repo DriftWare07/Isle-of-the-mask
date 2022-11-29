@@ -54,7 +54,8 @@ func inputs():
 	elif (not is_on_floor() and Input.is_action_just_pressed("jump")) and (not double_jumped and not cast.is_colliding()):
 		velocity.y = 0
 		velocity.y -= double_jump+(gravity/10)
-		#$UI/Control/Shockwave.material.set_shader_param("center", )
+		$UI/Control/Shockwave.rect_global_position.x = get_global_transform_with_canvas().origin.x-512
+		$UI/Control/Shockwave.rect_global_position.x = get_global_transform_with_canvas().origin.x-300
 		fade.play("Shockwave")
 		double_jumped = true
 		

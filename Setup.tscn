@@ -1,16 +1,8 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/components/AutoTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/tile154.png" type="Texture" id=2]
-[ext_resource path="res://Packed Scenes/Trunk.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Packed Scenes/Ghost.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Packed Scenes/Player.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Packed Scenes/Plant Shooter.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Packed Scenes/Bouncer.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Packed Scenes/Mushy.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Packed Scenes/Saw.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Packed Scenes/Pig.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Packed Scenes/Turnip.tscn" type="PackedScene" id=12]
 
 [sub_resource type="Environment" id=94]
 background_mode = 4
@@ -19,7 +11,7 @@ glow_enabled = true
 [node name="Node2D" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
-position = Vector2( -330, -243 )
+position = Vector2( -329, -240 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -44,36 +36,3 @@ region_filter_clip = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 94 )
-
-[node name="Saw" parent="." instance=ExtResource( 10 )]
-
-[node name="Mushy" parent="." instance=ExtResource( 9 )]
-position = Vector2( 332, -182 )
-
-[node name="Mushy2" parent="." instance=ExtResource( 9 )]
-position = Vector2( 461, -182 )
-
-[node name="Ghost" parent="." instance=ExtResource( 4 )]
-position = Vector2( -2, -176 )
-
-[node name="Ghost2" parent="." instance=ExtResource( 4 )]
-position = Vector2( -78, -177 )
-
-[node name="Pig" parent="." instance=ExtResource( 11 )]
-position = Vector2( -188, -174 )
-
-[node name="Plant Shooter" parent="." instance=ExtResource( 6 )]
-position = Vector2( -406, -181 )
-flipped = true
-
-[node name="Plant Shooter2" parent="." instance=ExtResource( 6 )]
-position = Vector2( -342, -181 )
-
-[node name="Trunk" parent="." instance=ExtResource( 3 )]
-position = Vector2( 566, -178 )
-
-[node name="Bouncer" parent="." instance=ExtResource( 7 )]
-position = Vector2( 200, 33 )
-
-[node name="Turnip" parent="." instance=ExtResource( 12 )]
-position = Vector2( 93, -283 )

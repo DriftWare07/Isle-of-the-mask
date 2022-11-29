@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Packed Scenes/TurnipFrames.tres" type="SpriteFrames" id=1]
-[ext_resource path="res://Packed Scenes/Turnip.gd" type="Script" id=2]
+[ext_resource path="res://Packed Scenes/hazards/MushyFrames.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://Packed Scenes/hazards/Mushy.gd" type="Script" id=3]
 [ext_resource path="res://assets/SFX/enemy_hurt.sfxr" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=128]
-extents = Vector2( 14, 11.5 )
+extents = Vector2( 14, 10 )
 
 [sub_resource type="RectangleShape2D" id=129]
 extents = Vector2( 13, 9.5 )
@@ -14,19 +14,20 @@ extents = Vector2( 13, 9.5 )
 radius = 4.0
 height = 17.5
 
-[node name="Turnip" type="KinematicBody2D"]
+[node name="Mushy" type="KinematicBody2D"]
 collision_mask = 4
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
-animation = "flying_idle"
+animation = "walk"
+frame = 13
 playing = true
 flip_h = true
 
 [node name="Phy_box" type="CollisionShape2D" parent="." groups=["Hazard"]]
 visible = false
-position = Vector2( 0, 7.5 )
+position = Vector2( 0, 6 )
 shape = SubResource( 128 )
 
 [node name="hurtbox" type="Area2D" parent="." groups=["Hazard"]]
