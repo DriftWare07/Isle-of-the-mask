@@ -75,10 +75,10 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=128]
-extents = Vector2( 14, 10 )
+extents = Vector2( 12, 6 )
 
 [sub_resource type="RectangleShape2D" id=129]
-extents = Vector2( 13, 9.5 )
+extents = Vector2( 13, 10 )
 
 [sub_resource type="CapsuleShape2D" id=130]
 radius = 4.0
@@ -96,19 +96,16 @@ playing = true
 flip_h = true
 
 [node name="Phy_box" type="CollisionShape2D" parent="." groups=["Hazard"]]
-visible = false
-position = Vector2( 0, 6 )
+position = Vector2( 0, 2 )
 shape = SubResource( 128 )
 
 [node name="hurtbox" type="Area2D" parent="." groups=["Hazard"]]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
-position = Vector2( 0, 6.5 )
+position = Vector2( 0, 7 )
 shape = SubResource( 129 )
 
 [node name="hitbox" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 position = Vector2( 0, -3 )
