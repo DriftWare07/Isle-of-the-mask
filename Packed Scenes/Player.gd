@@ -56,7 +56,7 @@ func inputs():
 		velocity.y -= double_jump+(gravity/10)
 		
 		
-		var percentpos = Vector2(get_global_transform_with_canvas().origin.x/1024, get_global_transform_with_canvas().origin.y/600)
+		var percentpos = Vector2(get_global_transform_with_canvas().origin.x/1024, 0.5)
 		$UI/Control/Shockwave.material.set_shader_param("center", percentpos)
 		fade.play("Shockwave")
 		double_jumped = true

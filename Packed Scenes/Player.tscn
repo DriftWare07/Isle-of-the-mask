@@ -288,6 +288,7 @@ color_ramp = SubResource( 4 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." groups=["Player"]]
 frames = ExtResource( 1 )
 animation = "idle"
+frame = 5
 playing = true
 
 [node name="sounds" type="Node2D" parent="." groups=["Player"]]

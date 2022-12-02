@@ -35,7 +35,7 @@ func _physics_process(_delta):
 		yield($AnimatedSprite, "animation_finished")
 		$AnimatedSprite.play("fly")
 		get_parent().add_child(bullet)
-		
+		bullet = b.instance()
 		$Timer.start()
 
 
