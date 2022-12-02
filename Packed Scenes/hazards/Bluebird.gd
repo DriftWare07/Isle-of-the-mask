@@ -13,7 +13,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
-func _physics_process(delta):
+func _physics_process(_delta):
 	velocity.x = sign(wallcheck.cast_to.x)*speed
 	if wallcheck.is_colliding():
 		wallcheck.cast_to.x = wallcheck.cast_to.x*-1

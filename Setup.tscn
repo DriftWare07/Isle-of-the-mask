@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/components/AutoTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/tile154.png" type="Texture" id=2]
-[ext_resource path="res://Packed Scenes/hazards/Bluebird.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Packed Scenes/hazards/Bee.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Packed Scenes/hazards/Bluebird.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Packed Scenes/Player.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Environment" id=94]
@@ -38,5 +39,14 @@ region_filter_clip = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 94 )
 
-[node name="Mushy" parent="." instance=ExtResource( 3 )]
-position = Vector2( 67, -334 )
+[node name="Bee" parent="." instance=ExtResource( 3 )]
+position = Vector2( -117, -287 )
+
+[node name="Bee2" parent="." instance=ExtResource( 3 )]
+position = Vector2( -32, -286 )
+
+[node name="Bee3" parent="." instance=ExtResource( 3 )]
+position = Vector2( -78, -288 )
+
+[node name="Bluebird" parent="." instance=ExtResource( 4 )]
+position = Vector2( 61, -336 )

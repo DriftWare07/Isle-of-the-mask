@@ -6,7 +6,7 @@ export var speed = 100
 var inhurt = false
 onready var wallcheck = $Wallcheck
 # Called when the node enters the scene tree for the first time.
-var b = preload("res://Packed Scenes/Bullet.tscn")
+var b = preload("res://Packed Scenes/hazards/Bullet.tscn")
 var bullet = b.instance()
 export var flipped = false
 func _ready():

@@ -5,10 +5,10 @@ extends KinematicBody2D
 # var a = 2
 # var b = "text"
 var velocity = Vector2(200,0)
-
+var img = load("res://assets/hazards/Bullet.png")
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	$Sprite.texture = img
 
 
 func _physics_process(_delta):

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/AttackBee (36x34).png-dd7843e1d6e8912ce7b21a2b3e7f34fd.stex"
+path="res://.import/Bee Bullet.png-109fe1644ddfb67f53ce42967c0d26a6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/hazards/AttackBee (36x34).png"
-dest_files=[ "res://.import/AttackBee (36x34).png-dd7843e1d6e8912ce7b21a2b3e7f34fd.stex" ]
+source_file="res://assets/hazards/Bee Bullet.png"
+dest_files=[ "res://.import/Bee Bullet.png-109fe1644ddfb67f53ce42967c0d26a6.stex" ]
 
 [params]
 
