@@ -91,20 +91,24 @@ script = ExtResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 140 )
 animation = "walk"
+frame = 1
 playing = true
 flip_h = true
 
 [node name="Phy_box" type="CollisionShape2D" parent="." groups=["Hazard"]]
+visible = false
 position = Vector2( 0, 2 )
 shape = SubResource( 128 )
 
 [node name="hurtbox" type="Area2D" parent="." groups=["Hazard"]]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
 position = Vector2( 0, 7 )
 shape = SubResource( 129 )
 
 [node name="hitbox" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 position = Vector2( 0, -3 )
