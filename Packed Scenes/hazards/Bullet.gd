@@ -17,4 +17,6 @@ func _physics_process(_delta):
 
 
 func _on_Area2D_body_entered(_body):
+	$Timer.start()
+	yield($Timer, "timeout")
 	queue_free()
